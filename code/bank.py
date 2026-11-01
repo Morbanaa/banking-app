@@ -62,7 +62,7 @@ class Bank():
     def login_to_account(cls):
         while True:
             while True:
-                name = input("Please enter the name associated with the account: ")
+                name = input("Please enter the name associated with the account: ").title()
                 if name != "":
                     break
                 else:
@@ -74,7 +74,7 @@ class Bank():
                 else:
                     print("The name must be at least one charactor long")
             if not cls.accounts:
-                print("The user name and password does not match any on file")
+                print("There are no current user accounts")
                 return
             else:
                 for index, account in enumerate(cls.accounts):
@@ -88,7 +88,27 @@ class Bank():
                     
     @classmethod
     def find_account_by_name(cls):
-        pass
+        while True:
+            user = input("Enter the name of the account your looking for: ").title()
+            if user == "":
+                print("You must enter somthing")
+                continue
+
+            found = False
+            for account in cls.accounts:
+                if account.owner == user:
+                    found = True
+                    print("==================================================================================")
+                    print(f"Your search returned:")
+                    account.display_info()
+
+            if found == False:
+                print("==================================================================================")
+                print(f"The account under ({account.owner}) was not found")
+            return
+
+
+            
 
     @classmethod
     def show_all_accounts(cls):
