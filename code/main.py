@@ -1,3 +1,6 @@
+# Teddy Rodd
+# Banking App
+
 """
 changes:
 Make it so the user can request to cancel their account and withdraw funds. 
