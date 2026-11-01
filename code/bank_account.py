@@ -46,12 +46,11 @@ class BankAccount():
                 print("Sorry that password does not match") 
 
     def display_info(self):
-        print(f"\nOwner: {self.owner}")
-        print(f"Balance: {self.balance}")
+        print("==================================================================================")
+        print(f"Owner: {self.owner}  ||  Balance: {self.balance}")
 
     def menu(self):
         while True:
-            print("==================================================================================")
             self.display_info()
             print("(1) Deposit")
             print("(2) Withdraw")
