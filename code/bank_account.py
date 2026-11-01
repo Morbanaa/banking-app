@@ -56,7 +56,7 @@ class BankAccount():
             print("(1) Deposit")
             print("(2) Withdraw")
             print("(3) Change Password")
-            print("(4) Return to menu")
+            print("(4) Return to bank menu")
             choice = input("Choose: ")
             print("==================================================================================")
 

@@ -44,7 +44,19 @@ class Bank():
 
     @classmethod
     def remove_account(cls):
-        pass
+        while True:
+            name = input("Please enter name of account to remove(Q to Quit): ").title()
+            if name == "Q" or name == "Quit":
+                return
+            elif name != "":
+                for account in cls.accounts:
+                    if name == account.owner:
+                        print(f"{account.name}'s account removed")
+                        cls.accounts.remove(account)
+                        return
+                print("Account not found")
+            else:
+                print("Your name must be at least one charactor long")
 
     @classmethod
     def login_to_account(cls):
@@ -61,16 +73,22 @@ class Bank():
                     break
                 else:
                     print("The name must be at least one charactor long")
-            
-            found = True
-            for account in cls.accounts:
-                if account.owner == name and account.password == password:
-                    account.menu()
-                else:
-                    found = False
-            if found == False:
+            if not cls.accounts:
                 print("The user name and password does not match any on file")
-            return
+                return
+            else:
+                for index, account in enumerate(cls.accounts):
+                    if account.owner == name and account.password == password:
+                        account.menu()
+                        return
+                    elif index == len(cls.accounts) - 1:
+                        print("The user name and password does not match any on file")
+                        return
+    
+                    
+                
+
+                    
   
                     
 

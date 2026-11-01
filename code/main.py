@@ -51,6 +51,8 @@ def bank_menu(status):
                 Bank.show_all_accounts()
             elif choice == "4":
                 return
+            else:
+                print("Invalid input")
 
 def launch_banking_app():
         admin_password = "FISH"
@@ -75,6 +77,7 @@ def launch_banking_app():
                     else:
                         print("Login as Admin Granted...")
                         bank_menu("ADMIN")
+                        break
             elif choice == "3":
                 return
             else:
