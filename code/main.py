@@ -1,11 +1,6 @@
 # Teddy Rodd
 # Banking App
 
-"""
-changes:
-Make it so the user can request to cancel their account and withdraw funds. 
-The request is sent to admin who can then acc epot the change
-"""
 from bank import Bank
 
 def main():
@@ -35,7 +30,6 @@ def bank_menu(status):
                 return
             else:
                 print("Invalid input")
-
 
         else:
             print("==================================================================================")
@@ -86,7 +80,6 @@ def launch_banking_app():
                 return
             else:
                 print("Invalid Input")
-
-           
+       
 if __name__ == "__main__":
     main()
