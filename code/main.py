@@ -8,7 +8,8 @@ The request is sent to admin who can then acc epot the change
 """
 from bank import Bank
 
-def main(): 
+def main():
+    Bank.load_all_accounts() 
     launch_banking_app()
     print("==================================================================================")
     print("Have a great day!")

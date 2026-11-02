@@ -128,6 +128,7 @@ class Bank():
         file_path = project_root / "data" / "accounts.json"
 
         data = []
+        cls.accounts.sort(key=lambda account: account.owner)
         try:
             with open(file_path,"w") as file:
                 for account in cls.accounts:
@@ -145,4 +146,16 @@ class Bank():
 
     @ classmethod
     def load_all_accounts(cls):
-        pass
+        script_dir = Path(__file__).resolve().parent
+        project_root = script_dir.parent
+        file_path = project_root / "data" / "accounts.json"
+
+        try:
+            with open(file_path,"r") as file:
+                users = json.load(file)
+
+                for user in users:
+                    cls.accounts.append(BankAccount(user["Owner"],user["Password"],user["Balance"]))
+                
+        except FileNotFoundError:
+            print("File not found")
