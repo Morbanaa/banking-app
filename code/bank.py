@@ -1,4 +1,6 @@
 from bank_account import BankAccount
+import json
+from pathlib import Path
 
 class Bank():
 
@@ -40,6 +42,7 @@ class Bank():
                     print("You may only enter numeric values")
 
             cls.accounts.append(BankAccount(name,password2,balance))
+            cls.save_all_accounts()
             return
 
     @classmethod
@@ -51,8 +54,9 @@ class Bank():
             elif name != "":
                 for account in cls.accounts:
                     if name == account.owner:
-                        print(f"{account.name}'s account removed")
+                        print(f"{account.owner}'s account removed")
                         cls.accounts.remove(account)
+                        cls.save_all_accounts()
                         return
                 print("Account not found")
             else:
@@ -84,7 +88,6 @@ class Bank():
                     elif index == len(cls.accounts) - 1:
                         print("The user name and password does not match any on file")
                         return
-    
                     
     @classmethod
     def find_account_by_name(cls):
@@ -107,9 +110,6 @@ class Bank():
                 print(f"The account under ({account.owner}) was not found")
             return
 
-
-            
-
     @classmethod
     def show_all_accounts(cls):
         cls.accounts.sort(key=lambda account: account.owner)
@@ -123,7 +123,25 @@ class Bank():
 
     @classmethod
     def save_all_accounts(cls):
-        pass
+        script_dir = Path(__file__).resolve().parent
+        project_root = script_dir.parent
+        file_path = project_root / "data" / "accounts.json"
+
+        data = []
+        try:
+            with open(file_path,"w") as file:
+                for account in cls.accounts:
+                    user = {}
+                    user["Owner"] = account.owner
+                    user["Password"] = account.password
+                    user["Balance"] = account.balance
+                    data.append(user)
+
+                json.dump(data,file,indent=4)
+                print(f"Saved successfully to: {file_path}")
+
+        except FileNotFoundError:
+            print("That file was not found")
 
     @ classmethod
     def load_all_accounts(cls):
